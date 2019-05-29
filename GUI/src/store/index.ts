@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { createSocketMiddleware } from "./socketMiddleware/socketMiddleware";
 
 import { loginReducer } from "./login/reducers";
 
@@ -15,7 +16,8 @@ export type AppState = ReturnType<typeof rootReducer>;
 //Function to configure the store
 export default function configureStore() {
   //Middlewares
-  const middlewares = [thunkMiddleware];
+  const socketMiddleware = createSocketMiddleware("http://localhost:8000");
+  const middlewares = [socketMiddleware, thunkMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
 
   //Create the store with middlewares
@@ -27,6 +29,6 @@ export default function configureStore() {
   store.subscribe(() => {
     sessionStorage.setItem("state", JSON.stringify(store.getState()));
   });
-  
+
   return store;
 }

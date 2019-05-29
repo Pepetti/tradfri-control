@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import { connect } from "react-redux";
 
-import { login } from "../../store/login/actions";
+import { login, attemptLogin } from "../../store/login/actions";
 
 import LoginDrawer from "./LoginDrawer";
 import LoginBar from "./LoginBar";
@@ -12,6 +12,7 @@ export type updateFormField = React.SyntheticEvent<{ value: string }>;
 
 interface LoginWindowProps {
   login: typeof login;
+  attemptLogin: typeof attemptLogin;
 }
 
 class LoginWindow extends React.Component<LoginWindowProps> {
@@ -42,16 +43,9 @@ class LoginWindow extends React.Component<LoginWindowProps> {
   };
 
   //Logs the user in
-  login = () => {
-    var d = new Date();
-    this.props.login({
-      loggedin: true,
-      user: {
-        userName: this.state.userName,
-        loggedinAt: d.getTime(),
-        loggedOutAt: null
-      }
-    });
+  login = (e: FormEvent) => {
+    e.preventDefault();
+    this.props.attemptLogin(this.state.userName);
   };
 
   render() {
@@ -84,5 +78,5 @@ class LoginWindow extends React.Component<LoginWindowProps> {
 
 export default connect(
   null,
-  { login }
+  { login, attemptLogin}
 )(LoginWindow);

@@ -1,0 +1,15 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for tradfri-control GUI",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oskari Kotajärvi",
+  "license": "MIT",
+  "dependencies": {
+    "node-tradfri-argon": "^1.1.2",
+    "socket.io": "^2.2.0"
+  }
+}

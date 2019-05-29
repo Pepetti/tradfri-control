@@ -1,11 +1,11 @@
-import React from "react";
+import React, { FormEvent } from "react";
 
 import { updateFormField } from "./index";
 
 interface FormProps {
   userName: string;
   password: string;
-  login: () => void;
+  login: (e: FormEvent) => void;
   updateUser: (event: updateFormField) => void;
   updatePass: (event: updateFormField) => void;
 }
@@ -23,7 +23,7 @@ const LoginForm: React.FC<FormProps> = ({
         <h1>Login</h1>
       </div>
       <div className="login-form-container">
-        <form className="login-form" onSubmit={login}>
+        <form className="login-form" onSubmit={(e) =>login(e)}>
           <div className="login-form-input-fields">
             <input
               type="text"

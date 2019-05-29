@@ -1,4 +1,4 @@
-import { loginState, LOGIN, LOGOUT } from "./types";
+import { loginState, LOGIN_ATTEMPT, LOGIN, LOGOUT } from "./types";
 
 //Login action
 export function login(newLogin: loginState) {
@@ -13,5 +13,15 @@ export function logout(newLogout: loginState) {
   return {
     type: LOGOUT,
     payload: newLogout
+  };
+}
+
+export function attemptLogin(userName: string) {
+  return {
+    type: LOGIN_ATTEMPT,
+    payload: userName,
+    meta: {
+      remote: true
+    }
   };
 }

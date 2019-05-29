@@ -6,6 +6,7 @@ import { loginState } from "../store/login/types";
 import { logout } from "../store/login/actions";
 
 import Header from "./header/Header";
+import HubForm from "./hubform/hubform";
 
 interface MainViewProps {
   logged: loginState;
@@ -27,7 +28,14 @@ class MainView extends React.Component<MainViewProps> {
   };
 
   render() {
-    return <Header logout={this.logout} />;
+    return (
+      <div>
+        <Header logout={this.logout} />
+        <main style={{ marginTop: "64px" }}>
+          <HubForm />
+        </main>
+      </div>
+    );
   }
 }
 

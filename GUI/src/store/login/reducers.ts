@@ -23,10 +23,12 @@ export function loginReducer(
   switch (action.type) {
     case LOGIN:
       return {
+        ...state,
         ...action.payload
       };
     case LOGOUT:
       return {
+        ...state,
         ...action.payload
       };
     default:

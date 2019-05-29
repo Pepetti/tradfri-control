@@ -11,6 +11,7 @@ export interface loginState {
 //Action types
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+export const LOGIN_ATTEMPT = "LOGIN_ATTEMPT"
 
 //Login interface
 interface login {
