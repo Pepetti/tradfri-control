@@ -1,4 +1,5 @@
 import socketIO from "socket.io-client";
+import { Dispatch } from "redux";
 
 export const createSocketMiddleware = (url: string, channelName = "action") => (
   store: any
@@ -7,10 +8,10 @@ export const createSocketMiddleware = (url: string, channelName = "action") => (
 
   socket.on(channelName, store.dispatch);
 
-  return (next: any) => (action: any) =>{
-      if(action.meta && action.meta.remote){
-          socket.emit(channelName, action)
-      }
-      return next(action);
-  }
+  return (next: Dispatch) => (action: any) => {
+    if (action.meta && action.meta.remote) {
+      socket.emit(channelName, action);
+    }
+    return next(action);
+  };
 };

@@ -16,7 +16,7 @@ export type AppState = ReturnType<typeof rootReducer>;
 //Function to configure the store
 export default function configureStore() {
   //Middlewares
-  const socketMiddleware = createSocketMiddleware("http://localhost:8000");
+  const socketMiddleware = createSocketMiddleware("http://192.168.1.81:8000");
   const middlewares = [socketMiddleware, thunkMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
 
