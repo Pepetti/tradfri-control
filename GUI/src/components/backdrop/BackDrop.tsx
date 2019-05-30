@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
 import './backdrop.css';
 
-interface backDropProps{
-  click: () => void;
+interface backDropProps {
+    click: () => void;
 }
 
 const BackDrop: React.FC<backDropProps> = ({click}) => {
-  return <div className="backdrop" onClick={click}/>;
+    return <div className="backdrop" onClick={click} />;
 };
 
 export default BackDrop;

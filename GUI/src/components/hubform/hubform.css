@@ -1,0 +1,42 @@
+.hubform-container {
+    display: flex;
+    justify-content: center;
+}
+
+.hubform-title {
+    display: flex;
+    justify-content: center;
+}
+
+.hubform-p {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-right: 5px;
+    padding-left: 5px;
+    text-align: center;
+}
+
+.hubform-p p {
+    max-width: 400px;
+}
+
+.hubform div {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+}
+
+.hubform label {
+    margin: 5px 0;
+}
+
+.hubform input {
+    border: none;
+    border-bottom: 2px solid;
+}
+
+.hubform input:focus {
+    border: none;
+    border-bottom: 2px solid;
+}
