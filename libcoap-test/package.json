@@ -1,0 +1,16 @@
+{
+  "name": "libcoap-test",
+  "version": "1.0.0",
+  "description": "Test for libcoap/node-tradfri-argon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oskari Kotajärvi",
+  "license": "ISC",
+  "dependencies": {
+    "node-tradfri-argon": "^1.1.2",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
+  }
+}
