@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {FormEvent} from 'react';
 import {connect} from 'react-redux';
 
 import {AppState} from '../store';
 import {loginState} from '../store/login/types';
 import {logout} from '../store/login/actions';
+import {connectHub} from '../store/hub/actions';
 
 import Header from './header/Header';
 import HubForm from './hubform/hubform';
@@ -11,6 +12,7 @@ import HubForm from './hubform/hubform';
 interface MainViewProps {
     logged: loginState;
     logout: typeof logout;
+    connectHub: typeof connectHub;
 }
 
 export type updateFormField = React.SyntheticEvent<{value: string}>;
@@ -44,6 +46,16 @@ class MainView extends React.Component<MainViewProps> {
         this.setState({hubkey: event.currentTarget.value});
     };
 
+    //Sends connect request for hub
+    hubConnect = (e: FormEvent) => {
+        e.preventDefault();
+        this.props.connectHub({
+            hubip: this.state.hubip,
+            hubkey: this.state.hubkey,
+            identity: this.props.logged.user.userName,
+        });
+    };
+
     render() {
         return (
             <div>
@@ -52,6 +64,7 @@ class MainView extends React.Component<MainViewProps> {
                     <HubForm
                         hubip={this.state.hubip}
                         hubkey={this.state.hubkey}
+                        connectHub={this.hubConnect}
                         updateIp={this.updateIp}
                         updateKey={this.updateKey}
                     />
@@ -67,5 +80,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export default connect(
     mapStateToProps,
-    {logout},
+    {logout, connectHub},
 )(MainView);

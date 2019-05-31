@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FormEvent} from 'react';
 
 import {updateFormField} from '../index';
 
@@ -7,6 +7,7 @@ import './hubform.css';
 interface HubFormProps {
     hubip: string;
     hubkey: string;
+    connectHub: (e: FormEvent) => void;
     updateIp: (event: updateFormField) => void;
     updateKey: (event: updateFormField) => void;
 }
@@ -14,6 +15,7 @@ interface HubFormProps {
 const HubForm: React.FC<HubFormProps> = ({
     hubip,
     hubkey,
+    connectHub,
     updateIp,
     updateKey,
 }) => {
@@ -31,7 +33,7 @@ const HubForm: React.FC<HubFormProps> = ({
                 </p>
             </div>
             <div className="hubform-container">
-                <form className="hubform">
+                <form className="hubform" onSubmit={e => connectHub(e)}>
                     <div className="hubform-input-fields">
                         <div className="hubform-group">
                             <input

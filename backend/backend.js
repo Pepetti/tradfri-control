@@ -1,5 +1,6 @@
 var io = require('socket.io')();
-var tradfri = require('node-tradfri-argon');
+var coap = '~/libcoap/examples/coap-client';
+let tradfri;
 
 const d = new Date();
 
@@ -36,6 +37,48 @@ io.on('connection', socket => {
                 console.log(
                     'Login success for user: ' + action.payload + '...',
                 );
+                break;
+
+            case 'CONNECT':
+                console.log(action);
+                tradfri = require('node-tradfri-argon').create({
+                    coapClientPath: coap,
+                    securityId: action.payload.hubkey,
+                    hubIpAddress: action.payload.hubip,
+                    identity: action.payload.identity,
+                });
+                console.log(
+                    'Created tradfri intance for user: ' +
+                        action.payload.identity +
+                        '...',
+                );
+                tradfri
+                    .register()
+                    .then(resp => {
+                        console.log('Registering...');
+                        console.log('Preshared Key: ' + resp.preshared_key);
+                        tradfri.setPresharedKey(resp.preshared_key);
+                        var obj = {
+                            type: 'CONNECTED',
+                            payload: {
+                                connected: true,
+                            },
+                        };
+                        console.log('Succesfully registered! Emitting...');
+                        socket.emit('CONNECTED', obj);
+                    })
+                    .catch(error => {
+                        console.log(
+                            'Error during registering: ' +
+                                error +
+                                ', emitting error...',
+                        );
+                        socket.emit('CONNECT_ERR');
+                    });
+                break;
+
+            default:
+                null;
         }
     });
 });
