@@ -11,12 +11,7 @@ interface HubFormProps {
     updateKey: (event: updateFormField) => void;
 }
 
-const HubForm: React.FC<HubFormProps> = ({
-    hubip,
-    hubkey,
-    updateIp,
-    updateKey,
-}) => {
+const HubForm: React.FC = () => {
     return (
         <div>
             <div className="hubform-title">
@@ -35,11 +30,9 @@ const HubForm: React.FC<HubFormProps> = ({
                     <div className="hubform-input-fields">
                         <div className="hubform-group">
                             <input
-                                className="form-control"
                                 type="text"
                                 name="hubip"
-                                value={hubip}
-                                onChange={updateIp}
+                                className="form-control"
                                 required
                             />
                             <label
@@ -50,11 +43,9 @@ const HubForm: React.FC<HubFormProps> = ({
                         </div>
                         <div className="hubform-group">
                             <input
-                                className="form-control"
                                 type="text"
                                 name="hubKey"
-                                value={hubkey}
-                                onChange={updateKey}
+                                className="form-control"
                                 required
                             />
                             <label
