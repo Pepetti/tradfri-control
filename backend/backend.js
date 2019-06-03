@@ -65,7 +65,7 @@ io.on('connection', socket => {
                             },
                         };
                         console.log('Succesfully registered! Emitting...');
-                        socket.emit('CONNECTED', obj);
+                        socket.emit('action', obj);
                     })
                     .catch(error => {
                         console.log(
