@@ -1,4 +1,4 @@
-import {CONNECTED, hubState, hubActionTypes} from './types';
+import {CONNECTED, CONNECT_ERR, hubState, hubActionTypes} from './types';
 
 //Initial state
 let initialState: hubState = {
@@ -21,6 +21,15 @@ export function hubReducer(
                 ...state,
                 ...action.payload,
             };
+        case CONNECT_ERR:
+            alert(
+                'An error occurred while connecting to the gateway. Please try again.',
+            );
+            return {
+                ...state,
+                ...action.payload,
+            };
+
         default:
             return {
                 ...state,

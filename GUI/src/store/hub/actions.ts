@@ -1,4 +1,4 @@
-import {hubState, hubInfo, CONNECT, CONNECTED} from './types';
+import {hubState, hubInfo, CONNECT, CONNECTED, CONNECT_ERR} from './types';
 
 //Connect action
 export function connectHub(hubinfo: hubInfo) {
@@ -16,5 +16,13 @@ export function connected(newConnected: hubState) {
     return {
         type: CONNECTED,
         payload: newConnected,
+    };
+}
+
+//Connect error action
+export function connect_err(newError: hubState) {
+    return {
+        type: CONNECT_ERR,
+        payload: newError,
     };
 }

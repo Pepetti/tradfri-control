@@ -73,7 +73,14 @@ io.on('connection', socket => {
                                 error +
                                 ', emitting error...',
                         );
-                        socket.emit('CONNECT_ERR');
+                        var obj = {
+                            type: 'CONNECT_ERR',
+                            payload: {
+                                connected: false,
+                            },
+                        };
+                        socket.emit('action', obj);
+                        console.log('Error emitted...');
                     });
                 break;
 

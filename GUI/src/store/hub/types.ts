@@ -14,6 +14,7 @@ export interface hubInfo {
 export const CONNECT = 'CONNECT';
 export const DISCONNECT = 'DISCONNECT';
 export const CONNECTED = 'CONNECTED';
+export const CONNECT_ERR = 'CONNECT_ERR';
 
 //Connect interface
 interface connect {
@@ -27,4 +28,9 @@ interface connected {
     payload: hubState;
 }
 
-export type hubActionTypes = connected;
+interface connect_err {
+    type: typeof CONNECT_ERR;
+    payload: hubState;
+}
+
+export type hubActionTypes = connected | connect_err;
