@@ -63,6 +63,7 @@ io.on('connection', socket => {
                             payload: {
                                 connected: true,
                             },
+                            user: action.payload.identity,
                         };
                         console.log('Succesfully registered! Emitting...');
                         socket.emit('action', obj);
